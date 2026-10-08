@@ -4,190 +4,559 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Purushottam Kumar Sharma | Portfolio</title>
+    <title>Purushottam Kumar Sharma | CSE Student</title>
 
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050507;
+            color: white;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 45px 45px;
+        }
+
+        .purple-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(
+                circle,
+                rgba(139, 92, 246, 0.20) 0%,
+                rgba(139, 92, 246, 0.08) 35%,
+                transparent 70%
+            );
+            filter: blur(30px);
+            pointer-events: none;
+        }
+
+        .purple-text {
+            background: linear-gradient(90deg, #a78bfa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168,85,247,0.45);
+            box-shadow: 0 15px 40px rgba(124,58,237,0.12);
+        }
+
+        .photo-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            height: 560px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Purple glow behind photo */
+        .photo-glow {
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(139,92,246,0.35),
+                rgba(109,40,217,0.12) 45%,
+                transparent 72%
+            );
+            filter: blur(35px);
+        }
+
+        /* Main photo */
+        .profile-photo {
+            position: relative;
+            z-index: 2;
+            width: 430px;
+            height: 500px;
+            object-fit: cover;
+            object-position: center top;
+
+            /* removes the hard rectangular appearance */
+            border-radius: 45% 45% 35% 35% / 35% 35% 55% 55%;
+
+            /* blends photo edges into the background */
+            -webkit-mask-image:
+                radial-gradient(
+                    ellipse at center,
+                    black 45%,
+                    rgba(0,0,0,0.95) 58%,
+                    rgba(0,0,0,0.65) 72%,
+                    transparent 100%
+                );
+
+            mask-image:
+                radial-gradient(
+                    ellipse at center,
+                    black 45%,
+                    rgba(0,0,0,0.95) 58%,
+                    rgba(0,0,0,0.65) 72%,
+                    transparent 100%
+                );
+
+            filter: contrast(1.04) saturate(0.92);
+        }
+
+        /* Purple curved decorative lines */
+        .curve {
+            position: absolute;
+            z-index: 3;
+            border: 2px solid rgba(168,85,247,0.45);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .curve-one {
+            width: 480px;
+            height: 590px;
+            right: -30px;
+            top: -10px;
+            transform: rotate(18deg);
+        }
+
+        .curve-two {
+            width: 430px;
+            height: 550px;
+            right: 15px;
+            top: 25px;
+            transform: rotate(18deg);
+            border-color: rgba(192,132,252,0.28);
+        }
+
+        @media (max-width: 768px) {
+            .photo-wrapper {
+                height: 480px;
+            }
+
+            .profile-photo {
+                width: 350px;
+                height: 420px;
+            }
+
+            .curve-one {
+                width: 400px;
+                height: 500px;
+            }
+
+            .curve-two {
+                width: 360px;
+                height: 460px;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="grid-bg">
 
-    <!-- Navigation -->
-    <header>
-        <h2>Purushottam Kumar Sharma</h2>
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-white/5">
+        <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#" class="text-xl font-extrabold tracking-tight">
+                PKS<span class="text-purple-400">.</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10 text-sm text-gray-400">
+                <a href="#projects" class="hover:text-white transition">Projects</a>
+                <a href="#skills" class="hover:text-white transition">Skills</a>
+                <a href="#experience" class="hover:text-white transition">Experience</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </div>
+
+            <a href="#contact"
+               class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-purple-100 transition">
+                Contact Me
+                <span>→</span>
+            </a>
         </nav>
     </header>
 
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- HERO -->
+    <section class="relative min-h-screen pt-32 overflow-hidden">
 
-        <h1>Hi, I'm Purushottam 👋</h1>
+        <div class="purple-glow left-[-200px] top-[80px]"></div>
 
-        <h2>CSE Student & Aspiring Developer</h2>
+        <div class="max-w-7xl mx-auto px-6 min-h-[calc(100vh-120px)] flex items-center">
 
-        <p>
-            I'm a first-semester Computer Science Engineering student
-            learning programming, web development, Python and data analysis.
-        </p>
+            <div class="grid lg:grid-cols-2 gap-10 items-center w-full">
 
-        <a href="#projects" class="btn">
-            View My Projects
-        </a>
+                <!-- LEFT -->
+                <div class="relative z-10">
 
-    </section>
+                    <p class="text-sm md:text-base font-semibold tracking-[0.35em] text-gray-500 mb-5">
+                        HEY, I'M
+                    </p>
+
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[0.95]">
+                        Purushottam
+                        <br>
+                        Kumar Sharma
+                    </h1>
+
+                    <h2 class="mt-7 text-2xl sm:text-3xl md:text-4xl font-bold purple-text">
+                        Computer Science Student
+                    </h2>
+
+                    <p class="mt-6 max-w-xl text-gray-400 text-base md:text-lg leading-8">
+                        I’m a first-semester Computer Science Engineering student
+                        at Chandigarh University, learning programming, web
+                        development, Python, data analysis and building practical
+                        projects to strengthen my skills.
+                    </p>
+
+                    <div class="mt-9 flex flex-wrap items-center gap-4">
+
+                        <!-- RESUME BUTTON -->
+                        <a href="resume.pdf"
+                           download="Purushottam_Kumar_Sharma_Resume.pdf"
+                           class="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-black font-semibold hover:bg-purple-100 transition">
+                            Download Resume
+                            <span>↓</span>
+                        </a>
+
+                        <!-- SOCIAL BUTTONS KEPT -->
+                        <a href="mailto:purushottam78453@gmail.com"
+                           class="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-white/10 transition"
+                           title="Email">
+                            ✉
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/purushottam-sharma-041544439/"
+                           target="_blank"
+                           class="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-white/10 transition"
+                           title="LinkedIn">
+                            in
+                        </a>
+
+                        <a href="https://github.com/purushottam78453-ux"
+                           target="_blank"
+                           class="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-white/10 transition"
+                           title="GitHub">
+                            GH
+                        </a>
+
+                    </div>
+
+                </div>
 
 
-    <!-- About -->
-    <section id="about">
+                <!-- RIGHT PHOTO -->
+                <div class="relative flex justify-center lg:justify-end">
 
-        <h2>About Me</h2>
+                    <div class="photo-wrapper">
 
-        <p>
-            I am currently building my programming fundamentals and working
-            on practical projects to develop my skills.
-        </p>
+                        <div class="photo-glow"></div>
 
-    </section>
+                        <img
+                            src="profile.jpeg"
+                            alt="Purushottam Kumar Sharma"
+                            class="profile-photo"
+                        >
 
+                        <div class="curve curve-one"></div>
+                        <div class="curve curve-two"></div>
 
-    <!-- Skills -->
-    <section id="skills">
+                    </div>
 
-        <h2>My Skills</h2>
+                </div>
 
-        <div class="skills">
-
-            <div class="skill">C</div>
-            <div class="skill">Python</div>
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">Git & GitHub</div>
+            </div>
 
         </div>
-
     </section>
 
 
-    <!-- Projects -->
-    <section id="projects">
+    <!-- PROJECTS -->
+    <section id="projects" class="py-28 px-6">
 
-        <h2>My Projects</h2>
+        <div class="max-w-7xl mx-auto">
+
+            <div class="mb-12">
+                <p class="text-purple-400 text-sm font-semibold tracking-widest uppercase">
+                    What I’ve Built
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-bold mt-3">
+                    Projects
+                </h2>
+
+                <p class="text-gray-400 mt-4 max-w-2xl">
+                    Practical projects I’m building while developing my programming
+                    and web development skills.
+                </p>
+            </div>
 
 
-        <!-- Portfolio Project -->
-        <div class="project">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <h3>Portfolio Website</h3>
+                <!-- CALCULA -->
+                <div class="project-card glass rounded-3xl p-7">
 
-            <p>
-                My personal portfolio website built using HTML and CSS.
-                It showcases my skills, projects and development journey.
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl">
+                        🧮
+                    </div>
+
+                    <h3 class="text-xl font-bold mt-6">
+                        CALCULA
+                    </h3>
+
+                    <p class="text-gray-400 mt-3 leading-7">
+                        A responsive smart calculator and multi-tool web application
+                        with keyboard support, calculation history and useful converters.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://purushottam78453-ux.github.io/calcula-smart-calculator/"
+                           target="_blank"
+                           class="text-sm font-semibold text-purple-400 hover:text-purple-300">
+                            Live Demo →
+                        </a>
+
+                        <a href="https://github.com/purushottam78453-ux/calcula-smart-calculator"
+                           target="_blank"
+                           class="text-sm font-semibold text-gray-400 hover:text-white">
+                            GitHub →
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- STUDYHUB -->
+                <div class="project-card glass rounded-3xl p-7">
+
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl">
+                        📚
+                    </div>
+
+                    <h3 class="text-xl font-bold mt-6">
+                        STUDYHUB
+                    </h3>
+
+                    <p class="text-gray-400 mt-3 leading-7">
+                        A student life management dashboard for subjects, tasks,
+                        attendance, exams and expenses.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://purushottam78453-ux.github.io/studyhub-student-dashboard/"
+                           target="_blank"
+                           class="text-sm font-semibold text-purple-400 hover:text-purple-300">
+                            Live Demo →
+                        </a>
+
+                        <a href="https://github.com/purushottam78453-ux/studyhub-student-dashboard"
+                           target="_blank"
+                           class="text-sm font-semibold text-gray-400 hover:text-white">
+                            GitHub →
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- PORTFOLIO -->
+                <div class="project-card glass rounded-3xl p-7">
+
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl">
+                        💻
+                    </div>
+
+                    <h3 class="text-xl font-bold mt-6">
+                        Personal Portfolio
+                    </h3>
+
+                    <p class="text-gray-400 mt-3 leading-7">
+                        My personal portfolio website showcasing my skills,
+                        projects, learning journey and contact information.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="https://purushottam78453-ux.github.io/portfolio/"
+                           target="_blank"
+                           class="text-sm font-semibold text-purple-400 hover:text-purple-300">
+                            Live Demo →
+                        </a>
+
+                        <a href="https://github.com/purushottam78453-ux/portfolio"
+                           target="_blank"
+                           class="text-sm font-semibold text-gray-400 hover:text-white">
+                            GitHub →
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-28 px-6 border-t border-white/5">
+
+        <div class="max-w-7xl mx-auto">
+
+            <p class="text-purple-400 text-sm font-semibold tracking-widest uppercase">
+                My Toolkit
             </p>
 
-            <a href="https://github.com/purushottam78453-ux/portfolio"
-               target="_blank">
-                GitHub
-            </a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-3">
+                Skills
+            </h2>
 
-        </div>
+            <div class="flex flex-wrap gap-4 mt-10">
 
+                <span class="glass px-6 py-3 rounded-full">C</span>
+                <span class="glass px-6 py-3 rounded-full">Python</span>
+                <span class="glass px-6 py-3 rounded-full">HTML</span>
+                <span class="glass px-6 py-3 rounded-full">CSS</span>
+                <span class="glass px-6 py-3 rounded-full">JavaScript</span>
+                <span class="glass px-6 py-3 rounded-full">Git</span>
+                <span class="glass px-6 py-3 rounded-full">GitHub</span>
+                <span class="glass px-6 py-3 rounded-full">Data Analysis</span>
 
-        <!-- CALCULA Project -->
-        <div class="project">
-
-            <h3>CALCULA — Smart Calculator</h3>
-
-            <p>
-                A responsive smart calculator and multi-tool web application
-                built using HTML, CSS and JavaScript. It includes calculation
-                history, keyboard support, converters and a responsive interface.
-            </p>
-
-            <a href="https://purushottam78453-ux.github.io/calcula-smart-calculator/"
-               target="_blank">
-                Live Demo
-            </a>
-
-            &nbsp;
-
-            <a href="https://github.com/purushottam78453-ux/calcula-smart-calculator"
-               target="_blank">
-                GitHub
-            </a>
-
-        </div>
-
-
-        <!-- STUDYHUB Project -->
-        <div class="project">
-
-            <h3>STUDYHUB — Student Life Management Dashboard</h3>
-
-            <p>
-                A student-focused dashboard for managing subjects, tasks,
-                attendance, exams and expenses. Built using HTML, CSS and
-                JavaScript with browser-based data storage.
-            </p>
-
-            <a href="https://purushottam78453-ux.github.io/studyhub-student-dashboard/"
-               target="_blank">
-                Live Demo
-            </a>
-
-            &nbsp;
-
-            <a href="https://github.com/purushottam78453-ux/studyhub-student-dashboard"
-               target="_blank">
-                GitHub
-            </a>
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- Contact -->
-    <section id="contact">
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-28 px-6 border-t border-white/5">
 
-        <h2>Contact Me</h2>
+        <div class="max-w-7xl mx-auto">
 
-        <p>
-            📧 Gmail:
-            <a href="mailto:purushottam78453@gmail.com">
-                purushottam78453@gmail.com
-            </a>
-        </p>
+            <p class="text-purple-400 text-sm font-semibold tracking-widest uppercase">
+                My Journey
+            </p>
 
-        <p>
-            💼 LinkedIn:
-            <a href="https://www.linkedin.com/in/purushottam-sharma-041544439/"
-               target="_blank">
-                Purushottam Kumar Sharma
-            </a>
-        </p>
+            <h2 class="text-4xl md:text-5xl font-bold mt-3">
+                Experience
+            </h2>
 
-        <p>
-            💻 GitHub:
-            <a href="https://github.com/purushottam78453-ux"
-               target="_blank">
-                purushottam78453-ux
-            </a>
-        </p>
+            <div class="mt-10 glass rounded-3xl p-8 max-w-3xl">
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+
+                    <div>
+                        <h3 class="text-xl font-bold">
+                            B.E. Computer Science & Engineering
+                        </h3>
+
+                        <p class="text-purple-400 mt-1">
+                            Chandigarh University
+                        </p>
+                    </div>
+
+                    <span class="text-sm text-gray-500">
+                        2026 – Present
+                    </span>
+
+                </div>
+
+                <p class="text-gray-400 mt-6 leading-8">
+                    Currently building my foundation in computer science,
+                    programming, web development, problem solving and
+                    practical software projects.
+                </p>
+
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- Footer -->
-    <footer>
+    <!-- CONTACT -->
+    <section id="contact" class="py-28 px-6 border-t border-white/5">
 
-        <p>© 2026 Purushottam Kumar Sharma</p>
+        <div class="max-w-7xl mx-auto text-center">
+
+            <p class="text-purple-400 text-sm font-semibold tracking-widest uppercase">
+                Get In Touch
+            </p>
+
+            <h2 class="text-4xl md:text-6xl font-bold mt-3">
+                Let’s Connect
+            </h2>
+
+            <p class="text-gray-400 mt-5 max-w-xl mx-auto leading-7">
+                I’m open to connecting with students, developers, mentors and
+                professionals in technology.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-10">
+
+                <a href="mailto:purushottam78453@gmail.com"
+                   class="glass px-6 py-3 rounded-full hover:bg-white/10 transition">
+                    Email
+                </a>
+
+                <a href="https://www.linkedin.com/in/purushottam-sharma-041544439/"
+                   target="_blank"
+                   class="glass px-6 py-3 rounded-full hover:bg-white/10 transition">
+                    LinkedIn
+                </a>
+
+                <a href="https://github.com/purushottam78453-ux"
+                   target="_blank"
+                   class="glass px-6 py-3 rounded-full hover:bg-white/10 transition">
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-8 px-6">
+
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between gap-4 text-sm text-gray-500">
+
+            <p>
+                © 2026 Purushottam Kumar Sharma
+            </p>
+
+            <p>
+                Built with HTML, CSS & JavaScript
+            </p>
+
+        </div>
 
     </footer>
 
